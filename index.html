@@ -2,27 +2,75 @@
 <html>
 <head>
     <title>Project Dreams</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: white;
+            padding: 40px;
+        }
+
+        .container {
+            max-width: 500px;
+        }
+
+        h1 {
+            letter-spacing: 2px;
+        }
+
+        input {
+            padding: 8px;
+            width: 200px;
+        }
+
+        button {
+            padding: 8px 12px;
+            margin-left: 5px;
+            cursor: pointer;
+        }
+
+        #result {
+            margin-top: 20px;
+        }
+
+        nav {
+            margin-top: 20px;
+        }
+
+        a {
+            display: block;
+            margin-top: 8px;
+        }
+    </style>
 </head>
+
 <body>
-    <h1>PROJECT DREAMS</h1>
+    <div class="container">
+        <h1>PROJECT DREAMS</h1>
 
-    <p>Enter Password:</p>
+        <p>Enter Password:</p>
 
-    <input type="text" id="password">
-    <button onclick="checkPassword()">Submit</button>
+        <input type="text" id="password">
+        <button onclick="checkPassword()">Submit</button>
+
+        <div id="result"></div>
+    </div>
 
     <script>
         function checkPassword() {
             const pass = document.getElementById("password").value;
+            const result = document.getElementById("result");
 
             if (pass === "ORIGIN") {
-                document.body.innerHTML = `
-                    <h1>ACCESS GRANTED</h1>
-                    <p>Archive unlocked.</p>
-                    <p>New tab available: ARCHIVE</p>
+                result.innerHTML = `
+                    <h2>ACCESS GRANTED</h2>
+                    <p>Welcome back.</p>
+
+                    <nav>
+                        <a href="archive.html">ARCHIVE</a>
+                    </nav>
                 `;
             } else {
-                alert("Incorrect password");
+                result.innerHTML = `<p style="color:red;">Incorrect password</p>`;
             }
         }
     </script>
