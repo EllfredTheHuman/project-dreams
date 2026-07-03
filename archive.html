@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Archive</title>
+
+    <style>
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background: white;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            text-align: left;
+        }
+
+        .box {
+            width: 100%;
+            max-width: 600px;
+            padding: 20px;
+        }
+
+        h1 {
+            letter-spacing: 2px;
+        }
+
+        .file {
+            padding: 10px;
+            border: 1px solid #ddd;
+            margin-top: 10px;
+            cursor: pointer;
+        }
+
+        .file:hover {
+            background: #f5f5f5;
+        }
+
+        #viewer {
+            margin-top: 20px;
+            padding: 10px;
+            border-top: 1px solid #ddd;
+        }
+
+        a {
+            display: block;
+            margin-top: 20px;
+        }
+    </style>
+</head>
+
+<body>
+
+<div class="box">
+    <h1>ARCHIVE</h1>
+
+    <p>Select a file:</p>
+
+    <div class="file" onclick="openFile('001')">001 - SYSTEM LOG</div>
+    <div class="file" onclick="openFile('002')">002 - USER ENTRY</div>
+    <div class="file" onclick="openFile('003')">003 - CORRUPTED DATA</div>
+
+    <div id="viewer"></div>
+
+    <a href="index.html">← Return</a>
+</div>
+
+<script>
+    function openFile(id) {
+        const viewer = document.getElementById("viewer");
+
+        if (id === "001") {
+            viewer.innerHTML = `
+                <h3>SYSTEM LOG 001</h3>
+                <p>Boot sequence completed.</p>
+                <p>Warning: irregular data detected.</p>
+            `;
+        }
+
+        if (id === "002") {
+            viewer.innerHTML = `
+                <h3>USER ENTRY 002</h3>
+                <p>"If you're reading this, you're already inside."</p>
+            `;
+        }
+
+        if (id === "003") {
+            viewer.innerHTML = `
+                <h3>CORRUPTED DATA</h3>
+                <p>█▒▒▒▒▒ ERROR ▒▒▒▒▒█</p>
+                <p>File integrity: UNKNOWN</p>
+            `;
+        }
+    }
+</script>
+
+</body>
+</html>
