@@ -4,81 +4,102 @@
     <title>Project Dreams</title>
 
     <style>
-    html, body {
-        margin: 0;
-        padding: 0;
-        height: 100%;
-        font-family: Arial, sans-serif;
-        background: white;
-    }
+        html, body {
+            margin: 0;
+            padding: 0;
+            height: 100%;
+            font-family: Arial, sans-serif;
+        }
 
-    body {
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        text-align: center; /* THIS is the missing piece */
-    }
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+        }
 
-    .box {
-        width: 100%;
-        max-width: 500px;
-    }
+        .box {
+            width: 100%;
+            max-width: 500px;
+        }
 
-    input {
-        padding: 8px;
-        width: 200px;
-        display: block;
-        margin: 10px auto;
-    }
+        input {
+            padding: 8px;
+            width: 200px;
+            margin-top: 10px;
+        }
 
-    button {
-        padding: 8px 12px;
-        cursor: pointer;
-    }
+        button {
+            padding: 8px 12px;
+            margin-top: 10px;
+            cursor: pointer;
+        }
 
-    #result {
-        margin-top: 20px;
-    }
+        nav a {
+            display: block;
+            margin-top: 10px;
+        }
 
-    nav a {
-        display: block;
-        margin-top: 10px;
-    }
-</style>
+        #error {
+            color: red;
+            margin-top: 10px;
+        }
+    </style>
 </head>
 
 <body>
 
-    <div class="box">
-        <h1>PROJECT DREAMS</h1>
+<div class="box">
+    <h1>PROJECT DREAMS</h1>
 
-        <p>Enter Password:</p>
+    <p>Enter Password:</p>
 
-        <input type="text" id="password">
-        <button onclick="checkPassword()">Submit</button>
+    <input type="text" id="password">
+    <br>
+    <button onclick="checkPassword()">Submit</button>
 
-        <div id="result"></div>
-    </div>
+    <div id="result"></div>
+    <div id="error"></div>
+</div>
 
-    <script>
-        function checkPassword() {
-            const pass = document.getElementById("password").value;
-            const result = document.getElementById("result");
+<script>
+    function checkPassword() {
+        const pass = document.getElementById("password").value;
+        const result = document.getElementById("result");
+        const error = document.getElementById("error");
 
-            if (pass === "ORIGIN") {
-                result.innerHTML = `
-                    <h2>ACCESS GRANTED</h2>
-                    <p>Welcome back.</p>
+        if (pass === "ORIGIN") {
+            localStorage.setItem("unlocked", "true");
 
-                    <nav>
-                        <a href="archive.html">ARCHIVE</a>
-                    </nav>
-                `;
-            } else {
-                result.innerHTML = `<p style="color:red;">Incorrect password</p>`;
-            }
+            result.innerHTML = `
+                <h2>ACCESS GRANTED</h2>
+                <p>Welcome back.</p>
+
+                <nav>
+                    <a href="archive.html">ARCHIVE</a>
+                </nav>
+            `;
+
+            error.innerHTML = "";
+        } else {
+            error.innerHTML = "Incorrect password";
         }
-    </script>
+    }
+
+    // auto-unlock if already entered before
+    window.onload = function () {
+        if (localStorage.getItem("unlocked") === "true") {
+            document.getElementById("result").innerHTML = `
+                <h2>ACCESS GRANTED</h2>
+                <p>Welcome back.</p>
+
+                <nav>
+                    <a href="archive.html">ARCHIVE</a>
+                </nav>
+            `;
+        }
+    }
+</script>
 
 </body>
 </html>
