@@ -65,38 +65,31 @@
 <script>
     function checkPassword() {
         const pass = document.getElementById("password").value;
-        const result = document.getElementById("result");
-        const error = document.getElementById("error");
 
         if (pass === "ORIGIN") {
             localStorage.setItem("unlocked", "true");
-
-            result.innerHTML = `
-                <h2>ACCESS GRANTED</h2>
-                <p>Welcome back.</p>
-
-                <nav>
-                    <a href="archive.html">ARCHIVE</a>
-                </nav>
-            `;
-
-            error.innerHTML = "";
+            showUnlocked();
         } else {
-            error.innerHTML = "Incorrect password";
+            document.getElementById("error").innerHTML = "Incorrect password";
         }
     }
 
-    // auto-unlock if already entered before
+    function showUnlocked() {
+        document.getElementById("result").innerHTML = `
+            <h2>ACCESS GRANTED</h2>
+            <p>Welcome back.</p>
+
+            <nav>
+                <a href="archive.html">ARCHIVE</a>
+            </nav>
+        `;
+        document.getElementById("error").innerHTML = "";
+    }
+
+    // ALWAYS run on page load
     window.onload = function () {
         if (localStorage.getItem("unlocked") === "true") {
-            document.getElementById("result").innerHTML = `
-                <h2>ACCESS GRANTED</h2>
-                <p>Welcome back.</p>
-
-                <nav>
-                    <a href="archive.html">ARCHIVE</a>
-                </nav>
-            `;
+            showUnlocked();
         }
     }
 </script>
