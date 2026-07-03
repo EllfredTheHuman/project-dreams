@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Project Dreams</title>
+</head>
+<body>
+    <h1>PROJECT DREAMS</h1>
+
+    <p>Enter Password:</p>
+
+    <input type="text" id="password">
+    <button onclick="checkPassword()">Submit</button>
+
+    <script>
+        function checkPassword() {
+            const pass = document.getElementById("password").value;
+
+            if (pass === "ORIGIN") {
+                document.body.innerHTML = `
+                    <h1>ACCESS GRANTED</h1>
+                    <p>Archive unlocked.</p>
+                    <p>New tab available: ARCHIVE</p>
+                `;
+            } else {
+                alert("Incorrect password");
+            }
+        }
+    </script>
+</body>
+</html>
