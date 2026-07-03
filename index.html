@@ -4,47 +4,47 @@
     <title>Project Dreams</title>
 
     <style>
-        body {
-            margin: 0;
-            font-family: Arial, sans-serif;
-            background: white;
+    html, body {
+        margin: 0;
+        padding: 0;
+        height: 100%;
+        font-family: Arial, sans-serif;
+        background: white;
+    }
 
-            /* perfect centering */
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            height: 100vh;
-        }
+    body {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        text-align: center; /* THIS is the missing piece */
+    }
 
-        .box {
-            width: 100%;
-            max-width: 500px;
-        }
+    .box {
+        width: 100%;
+        max-width: 500px;
+    }
 
-        h1 {
-            letter-spacing: 2px;
-        }
+    input {
+        padding: 8px;
+        width: 200px;
+        display: block;
+        margin: 10px auto;
+    }
 
-        input {
-            padding: 8px;
-            width: 200px;
-        }
+    button {
+        padding: 8px 12px;
+        cursor: pointer;
+    }
 
-        button {
-            padding: 8px 12px;
-            margin-left: 5px;
-            cursor: pointer;
-        }
+    #result {
+        margin-top: 20px;
+    }
 
-        #result {
-            margin-top: 20px;
-        }
-
-        nav a {
-            display: block;
-            margin-top: 10px;
-        }
-    </style>
+    nav a {
+        display: block;
+        margin-top: 10px;
+    }
+</style>
 </head>
 
 <body>
