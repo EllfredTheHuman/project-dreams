@@ -4,20 +4,22 @@
     <title>Archive</title>
 
     <style>
-        body {
+        html, body {
             margin: 0;
+            padding: 0;
+            height: 100%;
             font-family: Arial, sans-serif;
-            background: white;
+        }
+
+        body {
             display: flex;
             justify-content: center;
             align-items: center;
-            height: 100vh;
-            text-align: left;
         }
 
         .box {
             width: 100%;
-            max-width: 600px;
+            max-width: 650px;
             padding: 20px;
         }
 
@@ -26,8 +28,8 @@
         }
 
         .file {
+            border: 1px solid #ccc;
             padding: 10px;
-            border: 1px solid #ddd;
             margin-top: 10px;
             cursor: pointer;
         }
@@ -37,14 +39,22 @@
         }
 
         #viewer {
-            margin-top: 20px;
-            padding: 10px;
-            border-top: 1px solid #ddd;
+            margin-top: 25px;
+            border-top: 1px solid #ccc;
+            padding-top: 15px;
         }
 
         a {
             display: block;
-            margin-top: 20px;
+            margin-top: 25px;
+        }
+
+        h3 {
+            margin-bottom: 5px;
+        }
+
+        hr {
+            margin: 15px 0;
         }
     </style>
 </head>
@@ -52,46 +62,126 @@
 <body>
 
 <div class="box">
+
     <h1>ARCHIVE</h1>
 
-    <p>Select a file:</p>
+    <p>Select a file.</p>
 
-    <div class="file" onclick="openFile('001')">001 - SYSTEM LOG</div>
-    <div class="file" onclick="openFile('002')">002 - USER ENTRY</div>
-    <div class="file" onclick="openFile('003')">003 - CORRUPTED DATA</div>
+    <div id="files"></div>
 
     <div id="viewer"></div>
 
     <a href="index.html">← Return</a>
+
 </div>
 
 <script>
-    function openFile(id) {
-        const viewer = document.getElementById("viewer");
 
-        if (id === "001") {
-            viewer.innerHTML = `
-                <h3>SYSTEM LOG 001</h3>
-                <p>Boot sequence completed.</p>
-                <p>Warning: irregular data detected.</p>
-            `;
-        }
+const level = localStorage.getItem("level");
 
-        if (id === "002") {
-            viewer.innerHTML = `
-                <h3>USER ENTRY 002</h3>
-                <p>"If you're reading this, just know, it may be to late."</p>
-            `;
-        }
+const files = document.getElementById("files");
 
-        if (id === "003") {
-            viewer.innerHTML = `
-                <h3>CORRUPTED DATA</h3>
-                <p>█▒▒▒▒▒ ERROR ▒▒▒▒▒█</p>
-                <p>File integrity: UNKNOWN</p>
-            `;
-        }
+if (level === "2") {
+
+    files.innerHTML = `
+        <div class="file" onclick="openFile('001')">001 - SYSTEM LOG</div>
+        <div class="file" onclick="openFile('002')">002 - USER ENTRY</div>
+        <div class="file" onclick="openFile('003')">003 - CORRUPTED DATA</div>
+        <div class="file" onclick="openFile('004')">004 - INCIDENT REPORT</div>
+        <div class="file" onclick="openFile('005')">005 - RESEARCH NOTES</div>
+        <div class="file" onclick="openFile('006')">006 - MEDIA ARCHIVE</div>
+    `;
+
+} else {
+
+    files.innerHTML = `
+        <div class="file" onclick="openFile('001')">001 - SYSTEM LOG</div>
+        <div class="file" onclick="openFile('002')">002 - USER ENTRY</div>
+        <div class="file" onclick="openFile('003')">003 - CORRUPTED DATA</div>
+    `;
+
+}
+
+function openFile(id){
+
+    const viewer = document.getElementById("viewer");
+
+    if(id==="001"){
+        viewer.innerHTML=`
+            <h3>SYSTEM LOG 001</h3>
+            <p>Boot sequence completed.</p>
+            <p>Archive integrity: Stable.</p>
+        `;
     }
+
+    if(id==="002"){
+        viewer.innerHTML=`
+            <h3>USER ENTRY 002</h3>
+            <p>If you're reading this, you're already inside.</p>
+            <p>The next password is <strong>UNKNOWN</strong>.</p>
+        `;
+    }
+
+    if(id==="003"){
+        viewer.innerHTML=`
+            <h3>CORRUPTED DATA</h3>
+            <p>████ ERROR ████</p>
+            <p>Data recovery unsuccessful.</p>
+        `;
+    }
+
+    if(id==="004"){
+        viewer.innerHTML=`
+            <h3>PROJECT DREAMS</h3>
+            <h2>INCIDENT REPORT 004</h2>
+
+            <hr>
+
+            <p><strong>Date:</strong> ██ / ██ / 20██</p>
+            <p><strong>Research Lead:</strong> Dr. ████████</p>
+
+            <hr>
+
+            <p><strong>Summary</strong></p>
+
+            <p>Test Subject 01 showed no reaction to Compound D-17.</p>
+
+            <p>All vital signs remained stable throughout the trial.</p>
+
+            <p>No abnormalities were detected.</p>
+
+            <hr>
+
+            <p><strong>Notes</strong></p>
+
+            <p>New compounds are currently being developed.</p>
+
+            <p>Testing will continue following approval from the Ethics Committee.</p>
+
+            <p>We will continue trials until a measurable response is achieved.</p>
+        `;
+    }
+
+    if(id==="005"){
+        viewer.innerHTML=`
+            <h3>RESEARCH NOTES</h3>
+
+            <p>This file has not yet been recovered.</p>
+        `;
+    }
+
+    if(id==="006"){
+        viewer.innerHTML=`
+            <h3>MEDIA ARCHIVE</h3>
+
+            <p>External recording detected.</p>
+
+            <p><em>YouTube link will go here.</em></p>
+        `;
+    }
+
+}
+
 </script>
 
 </body>
