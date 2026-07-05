@@ -25,7 +25,7 @@
 
         input {
             padding: 8px;
-            width: 200px;
+            width: 220px;
             margin-top: 10px;
         }
 
@@ -35,14 +35,15 @@
             cursor: pointer;
         }
 
+        #error {
+            color: red;
+            margin-top: 15px;
+        }
+
         nav a {
             display: block;
             margin-top: 10px;
-        }
-
-        #error {
-            color: red;
-            margin-top: 10px;
+            font-size: 18px;
         }
     </style>
 </head>
@@ -50,48 +51,99 @@
 <body>
 
 <div class="box">
+
     <h1>PROJECT DREAMS</h1>
 
     <p>Enter Password:</p>
 
     <input type="text" id="password">
     <br>
+
     <button onclick="checkPassword()">Submit</button>
 
     <div id="result"></div>
     <div id="error"></div>
+
 </div>
 
 <script>
-    function checkPassword() {
-        const pass = document.getElementById("password").value;
 
-        if (pass === "ORIGIN") {
-            localStorage.setItem("unlocked", "true");
-            showUnlocked();
-        } else {
-            document.getElementById("error").innerHTML = "Incorrect password";
-        }
+function checkPassword() {
+
+    const pass = document.getElementById("password").value.trim().toUpperCase();
+
+    if (pass === "ORIGIN") {
+
+        localStorage.setItem("level", "1");
+        showLevel1();
+
     }
 
-    function showUnlocked() {
-        document.getElementById("result").innerHTML = `
-            <h2>ACCESS GRANTED</h2>
-            <p>Welcome back.</p>
+    else if (pass === "UNKNOWN") {
 
-            <nav>
-                <a href="archive.html">ARCHIVE</a>
-            </nav>
-        `;
-        document.getElementById("error").innerHTML = "";
+        localStorage.setItem("level", "2");
+        showLevel2();
+
     }
 
-    // ALWAYS run on page load
-    window.onload = function () {
-        if (localStorage.getItem("unlocked") === "true") {
-            showUnlocked();
-        }
+    else {
+
+        document.getElementById("error").innerHTML = "Incorrect password.";
+
     }
+
+}
+
+function showLevel1() {
+
+    document.getElementById("error").innerHTML = "";
+
+    document.getElementById("result").innerHTML = `
+        <h2>ACCESS GRANTED</h2>
+
+        <p>Archive access approved.</p>
+
+        <nav>
+            <a href="archive.html">ARCHIVE</a>
+        </nav>
+    `;
+
+}
+
+function showLevel2() {
+
+    document.getElementById("error").innerHTML = "";
+
+    document.getElementById("result").innerHTML = `
+        <h2>ACCESS LEVEL 2</h2>
+
+        <p>Additional archive files detected.</p>
+
+        <nav>
+            <a href="archive.html">ARCHIVE</a>
+        </nav>
+    `;
+
+}
+
+window.onload = function() {
+
+    const level = localStorage.getItem("level");
+
+    if(level === "2"){
+
+        showLevel2();
+
+    }
+
+    else if(level === "1"){
+
+        showLevel1();
+
+    }
+
+};
+
 </script>
 
 </body>
